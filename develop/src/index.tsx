@@ -22,7 +22,6 @@ export default class VisualizationStore extends VisualizationBase {
     const { fields, rows } = dataset
     const arr: IKeyValues = []
     const rangeNumber = range.split('-') as any
-    console.log(fields)
     rows.slice(rangeNumber[0] || 0, rangeNumber[1] || 10).forEach((line) => {
       line.forEach((item, index) => {
         if (index !== 0) {
@@ -42,11 +41,10 @@ export default class VisualizationStore extends VisualizationBase {
   }
 
   updateView(dataset: IDataset, config: IKeyValues) {
-    console.log('updateView', dataset, config)
     if (dataset.fields.length < 0) {
       return
     }
-    const { cols, type, arrangement, labelOffset, labelRotate, showLabel, height, range, showCrosshairs } = config
+    const { cols, type, arrangement, labelOffset, labelRotate, showLabel, height, range, padding, showTitle } = config
     const data = this.getData(dataset, range) as any
     const fields = arrangement === 'rect' ? [null, 'group'] as any : ['group'] as any
     this.element.innerHTML = ''
@@ -84,11 +82,17 @@ export default class VisualizationStore extends VisualizationBase {
         autoEllipsis: true
       },
     } : false)
-
     this.chart.facet(arrangement, {
       fields,
       cols: arrangement === 'rect' ? undefined : cols,
-      padding: 30,
+      padding,
+      showTitle: showTitle === 'true' || showTitle === true ? true : false,
+      rowTitle: {
+        style: {
+          fontSize: 12,
+          textAlign: 'right',
+        },
+      },
       eachView(view: any) {
         const item = type === 'line' ? view.line() : view.point()
         item
@@ -100,7 +104,6 @@ export default class VisualizationStore extends VisualizationBase {
       }
     });
     this.chart.tooltip({
-      showCrosshairs: showCrosshairs === 'true' ? true : false, // 展示 Tooltip 辅助线
       showTitle: true,
       crosshairs: {
         line: {
@@ -119,6 +122,5 @@ export default class VisualizationStore extends VisualizationBase {
       },
     });
     this.chart.render();
-    // ReactDom.render(<div className={style.view}><Facet dataset={dataset} config={config} width={toNumber(width)} data={data} /></div>, this.element);
   }
 }

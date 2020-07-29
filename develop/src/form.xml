@@ -5,10 +5,6 @@
         <label>分面高度</label>
         <initial-value>600</initial-value>
       </input>
-      <input type="number" field="facetNumber" required="true">
-        <label>分面个数</label>
-        <initial-value>9</initial-value>
-      </input>
        <input type="text" field="range" required="true">
         <label>分面范围</label>
         <initial-value>0-10</initial-value>
@@ -17,11 +13,21 @@
         <label>每行分面个数</label>
         <initial-value>3</initial-value>
       </input>
+      <input type="number" field="padding" required="true">
+        <label>分面间距</label>
+        <initial-value>30</initial-value>
+      </input>
       <input type="radio" field="type">
         <label>分面类型</label>
         <initial-value>line</initial-value>
         <choice value="line">折线</choice>
         <choice value="point">散点图</choice>
+      </input>
+      <input type="radio" field="showTitle">
+        <label>是否显分面标题</label>
+        <initial-value>true</initial-value>
+        <choice value="false">否</choice>
+        <choice value="true">是</choice>
       </input>
       <input type="radio" field="arrangement">
         <label>排列形式</label>
@@ -29,12 +35,6 @@
         <choice value="rect">行</choice>
         <choice value="list">列表</choice>
         <choice value='circle'>圆形</choice>
-      </input>
-      <input type="radio" field="showCrosshairs">
-        <label>是否显示辅助线</label>
-        <initial-value>false</initial-value>
-        <choice value="false">否</choice>
-        <choice value="true">是</choice>
       </input>
     </panel>
     <panel title="x轴">
