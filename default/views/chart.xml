@@ -1,1 +1,72 @@
-<text>配置相关图表的 xml 来展示该图表</text>
+<dashboard
+  theme="$operationBarToken.theme$"
+  time="$operationBarToken.time$"
+  refresh-interval="$operationBarToken.refreshInterval$"
+>
+  <operation-bar token="operationBarToken">
+    <title>分面</title>
+    <initial-value>
+      <theme>light</theme>
+      <refresh-interval>s30</refresh-interval>
+      <time>
+        <earliest>allTime</earliest>
+      </time>
+    </initial-value>
+  </operation-bar>
+  <grid-layout gap-x="10" gap-y="10" cols="48" row-height="30">
+    <layout left="0" top="0" width="48" height="16">
+      <chart type="facet-viz">
+        <search>
+          <query>
+            repo="prometheus_mssql"
+| chart count(value) over pandora_measurement  by first_run_time
+          </query>
+        </search>
+        <title>
+          <name>列表形式</name>
+        </title>
+        <hide-header>false</hide-header>
+        <operation>
+          <hide>false</hide>
+        </operation>
+        <option name="style.height">600</option>
+        <option name="style.range">1-10</option>
+        <option name="style.cols">3</option>
+        <option name="style.padding">30</option>
+        <option name="style.type">line</option>
+        <option name="style.showTitle">true</option>
+        <option name="style.arrangement">list</option>
+        <option name="style.showLabel">false</option>
+        <option name="style.labelOffset">10</option>
+        <option name="style.labelRotate">0</option>
+      </chart>
+    </layout>
+    <layout left="0" top="16" width="48" height="12">
+      <chart type="facet-viz">
+        <search>
+          <query>
+            repo="prometheus_mssql"
+| chart count(value) over pandora_measurement  by first_run_time
+          </query>
+        </search>
+        <title>
+          <name>行形式</name>
+        </title>
+        <hide-header>false</hide-header>
+        <operation>
+          <hide>false</hide>
+        </operation>
+        <option name="style.height">2000</option>
+        <option name="style.range">1-10</option>
+        <option name="style.cols">3</option>
+        <option name="style.padding">30</option>
+        <option name="style.type">line</option>
+        <option name="style.showTitle">true</option>
+        <option name="style.arrangement">rect</option>
+        <option name="style.showLabel">false</option>
+        <option name="style.labelOffset">10</option>
+        <option name="style.labelRotate">0</option>
+      </chart>
+    </layout>
+  </grid-layout>
+</dashboard>

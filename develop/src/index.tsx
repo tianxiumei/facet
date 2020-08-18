@@ -22,7 +22,7 @@ export default class VisualizationStore extends VisualizationBase {
     const { fields, rows } = dataset
     const arr: IKeyValues = []
     const rangeNumber = range.split('-') as any
-    rows.slice(rangeNumber[0] || 0, rangeNumber[1] || 10).forEach((line) => {
+    rows.slice(rangeNumber[0] - 1 || 0, rangeNumber[1] || 10).forEach((line) => {
       line.forEach((item, index) => {
         if (index !== 0) {
           arr.push({
@@ -60,7 +60,7 @@ export default class VisualizationStore extends VisualizationBase {
       autoFit: false,
       width: toNumber(width.replace('px', '')),
       height,
-      padding: 30
+      padding: 40
     });
     this.chart.data(data);
     this.chart.scale({

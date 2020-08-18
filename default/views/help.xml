@@ -1,0 +1,9 @@
+<html>
+  <h1>分面图</h1>
+
+  <h2>介绍</h2>
+  <p>每一个分组一个图形</p>
+  <h2>spl示例</h2>
+  <p>repo="prometheus_mssql"
+| chart count(value) over pandora_measurement  by first_run_time</p>
+</html>

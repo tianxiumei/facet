@@ -7,7 +7,7 @@
       </input>
        <input type="text" field="range" required="true">
         <label>分面范围</label>
-        <initial-value>0-10</initial-value>
+        <initial-value>1-10</initial-value>
       </input>
       <input type="number" field="cols" required="true">
         <label>每行分面个数</label>
